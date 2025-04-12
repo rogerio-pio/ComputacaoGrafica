@@ -1,19 +1,34 @@
 import glfw
 from OpenGL.GL import *
 
+vertices = [
+    [-0.5, -0.5],
+    [0.5, -0.5],
+    [0.0, 0.5]
+]
+
+cores = [
+    [1,0,0],
+    [0,1,0],
+    [0,0,1]
+]
+
 #Função para configurações iniciais da miha aplicação
 def init():
     glClearColor(1,1,1,1) #os 3 primeiros são referentes a cores e o ultimo valor referente a opacidade
 
 #atualizar a renderização da cena
 def render():
+    global vertices, cores
     glClear(GL_COLOR_BUFFER_BIT)
 
     glColor3f(1,0,0)
     glBegin(GL_TRIANGLES)
-    glVertex2f(-0.5, -0.5)
-    glVertex2f(0.5, -0.5)
-    glVertex2f(0.0, 0.5)
+    
+    for v,c in zip(vertices, cores):
+        glColor3fv(c)
+        glVertex2fv(v)
+
     glEnd()
 
 
